@@ -4,6 +4,7 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  Pagination,
   Radio,
   RadioGroup,
 } from "@mui/material";
@@ -18,6 +19,42 @@ import JobCard from "./job-card";
 
 const Home = () => {
   const [jobList, setJobList] = useState<Array<Job>>([
+    {
+      name: "Kasisto",
+      image:
+        "https://assets.themuse.com/uploaded/companies/15000043/small_logo.png?v=f7c2c2028042c08d343ed8215aee7a026bdb8338b1079d1aff48dbb9b0478d33",
+      location: "New York",
+      isFullTime: true,
+      role: "Front-End Software Engineer",
+      time: "5 days ago",
+    },
+    {
+      name: "Kasisto",
+      image:
+        "https://assets.themuse.com/uploaded/companies/15000043/small_logo.png?v=f7c2c2028042c08d343ed8215aee7a026bdb8338b1079d1aff48dbb9b0478d33",
+      location: "New York",
+      isFullTime: true,
+      role: "Front-End Software Engineer",
+      time: "5 days ago",
+    },
+    {
+      name: "Kasisto",
+      image:
+        "https://assets.themuse.com/uploaded/companies/15000043/small_logo.png?v=f7c2c2028042c08d343ed8215aee7a026bdb8338b1079d1aff48dbb9b0478d33",
+      location: "New York",
+      isFullTime: true,
+      role: "Front-End Software Engineer",
+      time: "5 days ago",
+    },
+    {
+      name: "Kasisto",
+      image:
+        "https://assets.themuse.com/uploaded/companies/15000043/small_logo.png?v=f7c2c2028042c08d343ed8215aee7a026bdb8338b1079d1aff48dbb9b0478d33",
+      location: "New York",
+      isFullTime: true,
+      role: "Front-End Software Engineer",
+      time: "5 days ago",
+    },
     {
       name: "Kasisto",
       image:
@@ -74,6 +111,15 @@ const Home = () => {
               </li>
             ))}
           </ul>
+          <div>
+            <Pagination
+              count={10}
+              variant="outlined"
+              shape="rounded"
+              color="primary"
+              className={styles.pagination}
+            />
+          </div>
         </div>
       </div>
     </MainLayout>

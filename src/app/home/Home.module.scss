@@ -50,10 +50,15 @@
   }
 
   .results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
     ul {
       margin: 0;
       padding: 0;
       list-style-type: none;
+      width: 100%;
 
       li {
         a {
@@ -61,6 +66,9 @@
           color: colors.$dark-primary;
         }
       }
+    }
+
+    .pagination {
     }
   }
 }

@@ -9,6 +9,7 @@
   align-items: center;
   gap: 0 16px;
   padding: 12px;
+  margin-bottom: 32px;
 
   .image {
     width: 90px;
@@ -47,13 +48,14 @@
         border: 1px solid colors.$dark-primary;
         border-radius: 4px;
         margin: 0;
+        font-weight: 700;
       }
 
       .part {
         color: colors.$gray;
         font-weight: 500;
         display: flex;
-        gap: 0 28px;
+        gap: 0 20px;
       }
 
       svg {
@@ -65,7 +67,7 @@
       .time {
         display: flex;
         align-items: center;
-        gap: 0 7.5px;
+        gap: 0 7px;
       }
     }
   }
