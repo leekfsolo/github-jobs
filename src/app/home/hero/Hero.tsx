@@ -1,6 +1,6 @@
 import React from "react";
 
-import WorkIcon from "@mui/icons-material/Work";
+import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import styles from "./Hero.module.scss";
 
 const Hero = () => {
@@ -12,7 +12,7 @@ const Hero = () => {
           placeholder="Title, companies, expertise or benefits"
         />
         <button>Search</button>
-        <WorkIcon />
+        <WorkOutlineOutlinedIcon />
       </form>
     </div>
   );
