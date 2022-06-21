@@ -1,0 +1,9 @@
+@use "../../assets/colors";
+
+.tag {
+  padding: 6px 8px;
+  border: 1px solid colors.$dark-primary;
+  border-radius: 4px;
+  margin: 0;
+  font-weight: 700;
+}

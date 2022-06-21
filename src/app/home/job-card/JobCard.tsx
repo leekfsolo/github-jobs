@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Job } from "../../model";
-import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
-import QueryBuilderOutlinedIcon from "@mui/icons-material/QueryBuilderOutlined";
 
 import styles from "./JobCard.module.scss";
+import Tag from "../../../common/ui/components/tag";
+import SupportiveText from "../../../common/ui/components/supportive-text";
 
 interface Props {
   job: Job;
@@ -22,16 +22,10 @@ const JobCard: FC<Props> = (props: Props) => {
         <h4>{name}</h4>
         <p className={styles.role}>{role}</p>
         <div className={styles.extend}>
-          {isFullTime && <p>Full time</p>}
+          {isFullTime && <Tag title="Full time" />}
           <div className={styles.part}>
-            <span className={styles.location}>
-              <PublicOutlinedIcon />
-              {location}
-            </span>
-            <span className={styles.time}>
-              <QueryBuilderOutlinedIcon />
-              {time}
-            </span>
+            <SupportiveText type="location" title={location} />
+            <SupportiveText type="time" title={time} />
           </div>
         </div>
       </div>

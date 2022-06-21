@@ -1,0 +1,14 @@
+@use "../../assets/colors";
+
+.supText {
+  display: flex;
+  align-items: center;
+  gap: 0 5px;
+  color: colors.$gray;
+  font-weight: 500;
+
+  svg {
+    width: 16px;
+    fill: colors.$gray;
+  }
+}
