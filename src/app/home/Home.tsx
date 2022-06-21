@@ -117,7 +117,6 @@ const Home = () => {
               variant="outlined"
               shape="rounded"
               color="primary"
-              className={styles.pagination}
             />
           </div>
         </div>
