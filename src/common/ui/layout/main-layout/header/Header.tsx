@@ -1,7 +1,15 @@
 import React from "react";
 
+import styles from "./Header.module.scss";
+
 const Header = () => {
-  return <div>Header</div>;
+  return (
+    <header className={styles.header}>
+      <p>
+        <span className={styles.brand}>Github</span> Jobs
+      </p>
+    </header>
+  );
 };
 
 export default Header;

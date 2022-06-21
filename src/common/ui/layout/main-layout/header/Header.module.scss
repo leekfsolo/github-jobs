@@ -1,0 +1,15 @@
+@use "../../../assets/colors";
+
+.header {
+  font-family: "Poppins", sans-serif;
+  color: colors.$text-black;
+
+  p {
+    font-size: 24px;
+    font-weight: 300;
+
+    span {
+      font-weight: 700;
+    }
+  }
+}
