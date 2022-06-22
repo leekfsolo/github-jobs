@@ -5,7 +5,6 @@ export const doGet = (url: string, params?: Object): AxiosPromise<any> => {
     url,
     params: {
       api_key: process.env.REACT_APP_KEY,
-      page: 1,
       ...params,
     },
     method: "GET",

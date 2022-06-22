@@ -15,8 +15,7 @@ const Posts = () => {
     name: "Kasisto",
     image:
       "https://assets.themuse.com/uploaded/companies/15000043/small_logo.png?v=f7c2c2028042c08d343ed8215aee7a026bdb8338b1079d1aff48dbb9b0478d33",
-    location: "New York",
-    isFullTime: true,
+    locations: ["New York"],
     role: "Front-End Software Engineer",
     time: "5 days ago",
     description: (
@@ -180,7 +179,7 @@ const Posts = () => {
           <div className={styles.job}>
             <div className={styles["job-name"]}>
               <h4>{job.role}</h4>
-              {job.isFullTime && <Tag title="Full time" />}
+              <Tag title="Full time" />
             </div>
             <SupText type="time" title={job.time} />
           </div>
@@ -190,7 +189,9 @@ const Posts = () => {
               <ImageWrapper url={job.image} />
               <div className={styles.info}>
                 <h4>{job.name}</h4>
-                <SupText type="location" title={job.location} />
+                {job.locations.length > 0 && (
+                  <SupText type="location" title={job.locations[0]} />
+                )}
               </div>
             </div>
             <div className={styles["job-desc"]}>{job.description}</div>

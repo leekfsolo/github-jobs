@@ -12,7 +12,7 @@ interface Props {
 
 const JobCard: FC<Props> = (props: Props) => {
   const { job } = props;
-  const { image, location, name, role, isFullTime, time } = job;
+  const { image, locations, name, role, time } = job;
 
   return (
     <div className={styles.card}>
@@ -21,10 +21,12 @@ const JobCard: FC<Props> = (props: Props) => {
         <h4>{name}</h4>
         <p className={styles.role}>{role}</p>
         <div className={styles.extend}>
-          {isFullTime && <Tag title="Full time" />}
+          <Tag title="Full time" />
           <div className={styles.part}>
-            <SupportiveText type="location" title={location} />
-            <SupportiveText type="time" title={time} />
+            {locations.length > 0 && (
+              <SupportiveText type="location" title={locations[0]} />
+            )}
+            <SupportiveText type="time" title={`${time} days ago`} />
           </div>
         </div>
       </div>

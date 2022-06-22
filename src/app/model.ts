@@ -4,8 +4,7 @@ export interface Job {
   name: string;
   role: string;
   image: string;
-  location: string;
+  locations: Array<string>;
   description: ReactNode;
-  isFullTime?: boolean;
   time?: string;
 }

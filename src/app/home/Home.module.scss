@@ -6,4 +6,11 @@
   gap: 0 32px;
   font-family: "Roboto", sans-serif;
   margin-top: 44px;
+
+  .job-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }

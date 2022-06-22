@@ -1,4 +1,3 @@
-import { Pagination } from "@mui/material";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { Job } from "../../model";
@@ -14,25 +13,15 @@ const Results: FC<Props> = (props: Props) => {
   const { jobList } = props;
 
   return (
-    <div className={styles.results}>
-      <ul>
-        {jobList.map((job, idx) => (
-          <li key={idx}>
-            <Link to={job.name}>
-              <JobCard job={job} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <Pagination
-          count={10}
-          variant="outlined"
-          shape="rounded"
-          color="primary"
-        />
-      </div>
-    </div>
+    <ul className={styles.results}>
+      {jobList.map((job, idx) => (
+        <li key={idx}>
+          <Link to={job.name}>
+            <JobCard job={job} />
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
