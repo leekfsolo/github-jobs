@@ -1,48 +1,28 @@
 import React, { FC } from "react";
 
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel } from "@mui/material";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
-
+import ControlledOpenSelect from "../../../common/ui/components/select/ControlledOpenSelect";
 import styles from "./Sortings.module.scss";
+import { CATEGORIES, LEVEL } from "../../../common/utils/constants";
 
 interface Props {}
 
 const Sortings: FC<Props> = (props: Props) => {
-  const locationOptions = ["London", "Amsterdam", "New York", "Berlin"];
-
   return (
     <div className={styles.sortings}>
-      <FormControlLabel control={<Checkbox />} label="Full Time" />
-      <div className={styles.location}>
-        <p>Location</p>
-        <div className={styles.field}>
-          <input type="text" placeholder="City, state, zip code or country" />
-          <PublicOutlinedIcon />
+      <FormControl sx={{ width: "100%" }}>
+        <FormControlLabel control={<Checkbox />} label="Full time" />
+        <div className={styles.location}>
+          <p>Location</p>
+          <div className={styles.field}>
+            <input type="text" placeholder="City, state, zip code or country" />
+            <PublicOutlinedIcon />
+          </div>
         </div>
-
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue={locationOptions[0]}
-            name="radio-buttons-group"
-          >
-            {locationOptions.map((opt, idx) => (
-              <FormControlLabel
-                value={opt}
-                control={<Radio />}
-                label={opt}
-                key={idx}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      </div>
+        <ControlledOpenSelect items={CATEGORIES} label="Category" />
+        <ControlledOpenSelect items={LEVEL} label="Level" />
+      </FormControl>
     </div>
   );
 };

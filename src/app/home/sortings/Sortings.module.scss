@@ -1,6 +1,8 @@
 @use "../../../common/ui/assets/colors";
 
 .sortings {
+  font-family: "Poppins", sans-serif;
+
   label {
     color: colors.$dark-primary;
     font-weight: 500;
