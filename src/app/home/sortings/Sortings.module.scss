@@ -1,0 +1,43 @@
+@use "../../../common/ui/assets/colors";
+
+.sortings {
+  label {
+    color: colors.$dark-primary;
+    font-weight: 500;
+  }
+
+  .location {
+    p {
+      margin: 30px 0 14px 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: colors.$gray;
+    }
+
+    .field {
+      width: 100%;
+      position: relative;
+      margin-bottom: 24px;
+
+      input {
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        padding: 17px 50px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+        color: colors.$text-black;
+      }
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        width: 18px;
+        fill: colors.$gray;
+      }
+    }
+  }
+}
