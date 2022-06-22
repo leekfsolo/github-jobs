@@ -2,8 +2,11 @@
 
 .tag {
   padding: 6px 8px;
+  color: colors.$dark-primary;
   border: 1px solid colors.$dark-primary;
   border-radius: 4px;
   margin: 0;
   font-weight: 700;
+  font-size: 12px;
+  display: inline-block;
 }

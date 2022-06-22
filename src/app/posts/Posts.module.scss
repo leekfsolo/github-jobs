@@ -1,1 +1,88 @@
 @use "../../common/ui/assets/colors";
+
+.posts {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 0 77px;
+
+  .sidebar {
+    font-family: "Poppins", sans-serif;
+
+    .backToPage {
+      display: flex;
+      align-items: center;
+      gap: 0 15px;
+      color: colors.$primary;
+      margin: 0;
+      text-decoration: none;
+
+      .flip {
+        transform: rotateY(180deg);
+      }
+    }
+
+    .apply {
+      flex-direction: column;
+
+      h4 {
+        font-size: 14px;
+        font-weight: 700;
+        color: colors.$gray;
+        margin-bottom: 0 0 16px 0;
+      }
+
+      p {
+        color: colors.$dark-primary;
+        font-weight: 500;
+        font-size: 14px;
+        padding-right: 50px;
+        margin: 0;
+
+        span {
+          color: colors.$primary;
+        }
+      }
+    }
+  }
+
+  .content {
+    .job {
+      .job-name {
+        display: flex;
+        align-items: center;
+        color: colors.$dark-primary;
+        gap: 0 15px;
+
+        h4 {
+          font-size: 24px;
+          font-weight: 700;
+          margin: 0;
+        }
+      }
+    }
+
+    .company {
+      .company-desc {
+        display: flex;
+        align-items: center;
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 5px 0;
+
+          h4 {
+            margin: 0;
+            color: colors.$dark-primary;
+            font-weight: 700;
+            font-size: 18px;
+          }
+        }
+      }
+
+      .job-desc {
+        color: colors.$dark-primary;
+      }
+    }
+  }
+}

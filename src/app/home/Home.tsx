@@ -27,6 +27,7 @@ const Home = () => {
       isFullTime: true,
       role: "Front-End Software Engineer",
       time: "5 days ago",
+      description: <></>,
     },
     {
       name: "Kasisto",
@@ -36,6 +37,7 @@ const Home = () => {
       isFullTime: true,
       role: "Front-End Software Engineer",
       time: "5 days ago",
+      description: <></>,
     },
     {
       name: "Kasisto",
@@ -45,6 +47,7 @@ const Home = () => {
       isFullTime: true,
       role: "Front-End Software Engineer",
       time: "5 days ago",
+      description: <></>,
     },
     {
       name: "Kasisto",
@@ -54,6 +57,7 @@ const Home = () => {
       isFullTime: true,
       role: "Front-End Software Engineer",
       time: "5 days ago",
+      description: <></>,
     },
     {
       name: "Kasisto",
@@ -63,6 +67,7 @@ const Home = () => {
       isFullTime: true,
       role: "Front-End Software Engineer",
       time: "5 days ago",
+      description: <></>,
     },
   ]);
   const locationOptions = ["London", "Amsterdam", "New York", "Berlin"];
