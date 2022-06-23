@@ -1,19 +1,43 @@
-import React, { Dispatch, FC } from "react";
+import React, { FC, FormEvent, useEffect, useRef, useState } from "react";
 
-import { Checkbox, FormControl, FormControlLabel } from "@mui/material";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
-import ControlledOpenSelect from "../../../common/ui/components/select/ControlledOpenSelect";
 import styles from "./Sortings.module.scss";
-import { CATEGORIES, LEVEL } from "../../../common/utils/constants";
-import { filteredAction } from "../reducer";
-import { filteredActionType } from "../../enum";
+import { INIT_LOCATION_OPTIONS } from "../../../common/utils/constants";
 
 interface Props {
-  setFilteredValues: Dispatch<filteredAction>;
+  location: string;
+  setLocation: (location: string) => void;
 }
 
 const Sortings: FC<Props> = (props: Props) => {
-  const { setFilteredValues } = props;
+  const [searchLocation, setSearchLocation] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { setLocation, location } = props;
+
+  const searchLocationHandler = (e: FormEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (inputRef.current) inputRef.current.value = value;
+    setSearchLocation(value);
+  };
+
+  const optionLocationHandler = (e: FormEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (inputRef.current) inputRef.current.value = value;
+    setLocation(value);
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLocation(searchLocation), 1000);
+
+    return () => clearTimeout(timeout);
+  }, [searchLocation, setLocation]);
 
   return (
     <div className={styles.sortings}>
@@ -22,20 +46,30 @@ const Sortings: FC<Props> = (props: Props) => {
         <div className={styles.location}>
           <p>Location</p>
           <div className={styles.field}>
-            <input type="text" placeholder="City, state, zip code or country" />
+            <input
+              type="text"
+              placeholder="City, state, zip code or country"
+              onChange={searchLocationHandler}
+              ref={inputRef}
+            />
             <PublicOutlinedIcon />
           </div>
         </div>
-        <ControlledOpenSelect
-          items={CATEGORIES}
-          label={filteredActionType.CATEGORY}
-          setFilteredValues={setFilteredValues}
-        />
-        <ControlledOpenSelect
-          items={LEVEL}
-          label={filteredActionType.LEVEl}
-          setFilteredValues={setFilteredValues}
-        />
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          name="radio-buttons-group"
+          onChange={optionLocationHandler}
+          value={location}
+        >
+          {INIT_LOCATION_OPTIONS.map((opt, idx) => (
+            <FormControlLabel
+              key={idx}
+              value={opt}
+              control={<Radio />}
+              label={opt}
+            />
+          ))}
+        </RadioGroup>
       </FormControl>
     </div>
   );

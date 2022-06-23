@@ -65,11 +65,11 @@
       .company-desc {
         display: flex;
         align-items: center;
+        gap: 10px;
 
         .info {
           display: flex;
           flex-direction: column;
-          gap: 5px 0;
 
           h4 {
             margin: 0;

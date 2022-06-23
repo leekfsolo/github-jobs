@@ -7,8 +7,3 @@ export interface Job {
   time?: number;
   id?: number;
 }
-
-export interface filteredValues {
-  category: string;
-  level: string;
-}

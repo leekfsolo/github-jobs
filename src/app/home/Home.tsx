@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useReducer, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import MainLayout from "../../common/ui/layout/main-layout";
 import Hero from "./hero";
@@ -8,18 +8,14 @@ import Sortings from "./sortings";
 import Results from "./results";
 import { doGetCompany, doGetJobList } from "../api";
 import { Pagination } from "@mui/material";
-import { filteredReducer } from "./reducer";
-import { INIT_FILTERED_VALUES } from "../../common/utils/constants";
 import { getDateHasPassed } from "../../common/utils/helpers/getDateHasPassed";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
   const [jobList, setJobList] = useState<Array<Job>>([]);
   const [page, setPage] = useState<number>(1);
-  const [filteredValues, setFilteredValues] = useReducer(
-    filteredReducer,
-    INIT_FILTERED_VALUES
-  );
 
   const handleChangePage = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -28,12 +24,10 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const { category, level } = filteredValues;
       const params = {
         page,
       };
-      category.length > 0 && Object.assign(params, { category });
-      level.length > 0 && Object.assign(params, { level });
+      location.length > 0 && Object.assign(params, { location });
 
       const jobResponse = await doGetJobList(params);
       const jobResponseData = jobResponse.data.results;
@@ -77,13 +71,13 @@ const Home = () => {
     };
 
     fetchData();
-  }, [page, setIsLoading, filteredValues]);
+  }, [page, setIsLoading, location]);
 
   return (
     <MainLayout isOpen={isLoading}>
-      <Hero setIsLoading={setIsLoading} />
+      <Hero setIsLoading={setIsLoading} setLocation={setLocation} />
       <div className={styles.content}>
-        <Sortings setFilteredValues={setFilteredValues} />
+        <Sortings setLocation={setLocation} location={location} />
         <div className={styles["job-list"]}>
           <Results jobList={jobList} />
           <Pagination
