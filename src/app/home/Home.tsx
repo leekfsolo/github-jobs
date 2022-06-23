@@ -55,12 +55,21 @@ const Home = () => {
           };
         });
 
+      const images: Array<{ id: number; image: string }> = [];
+
       for (const index in jobData) {
-        const companyResponse = await doGetCompany(
-          jobResponseData[index].company.id
-        );
-        const companyResponseData = companyResponse.data;
-        jobData[index].image = companyResponseData.refs.logo_image;
+        const { id } = jobResponseData[index].company;
+        if (images.some((image) => image.id === id)) {
+          const image = images[images.length - 1];
+          images.push(image);
+          jobData[index].image = image.image;
+        } else {
+          const companyResponse = await doGetCompany(id);
+          const companyResponseData = companyResponse.data;
+          const image = companyResponseData.refs.logo_image;
+          jobData[index].image = image;
+          images.push({ id, image });
+        }
       }
 
       setJobList(jobData);

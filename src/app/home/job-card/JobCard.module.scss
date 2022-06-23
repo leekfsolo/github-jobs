@@ -11,6 +11,20 @@
   padding: 12px;
   margin-bottom: 32px;
 
+  .notFound {
+    background-color: colors.$gray-1;
+    color: colors.$gray-2;
+    padding: 20px 10px;
+    border-radius: 4px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
   .image {
     width: 90px;
     height: 90px;

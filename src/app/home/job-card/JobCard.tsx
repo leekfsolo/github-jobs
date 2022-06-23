@@ -12,11 +12,15 @@ interface Props {
 
 const JobCard: FC<Props> = (props: Props) => {
   const { job } = props;
-  const { image, locations, name, role, time } = job;
+  const { image = "", locations, name, role, time } = job;
 
   return (
     <div className={styles.card}>
-      <ImageWrapper url={image} />
+      {image.length > 0 ? (
+        <ImageWrapper url={image} />
+      ) : (
+        <div className={styles.notFound}>Not Found</div>
+      )}
       <div className={styles.info}>
         <h4>{name}</h4>
         <p className={styles.role}>{role}</p>
