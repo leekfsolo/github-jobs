@@ -9,6 +9,8 @@ import Results from "./results";
 import { doGetCompany, doGetJobList } from "../api";
 import { Pagination } from "@mui/material";
 import { getDateHasPassed } from "../../common/utils/helpers/getDateHasPassed";
+import ImageWrapper from "../../common/ui/components/image-wrapper";
+import NoData from "../../common/ui/assets/images/empty.png";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -79,16 +81,23 @@ const Home = () => {
       <Hero setCompany={setCompany} />
       <div className={styles.content}>
         <Sortings setLocation={setLocation} location={location} />
-        <div className={styles["job-list"]}>
-          <Results jobList={jobList} />
-          <Pagination
-            count={99}
-            variant="outlined"
-            shape="rounded"
-            color="primary"
-            onChange={handleChangePage}
-          />
-        </div>
+        {jobList.length > 0 ? (
+          <div className={styles["job-list"]}>
+            <Results jobList={jobList} />
+            <Pagination
+              count={99}
+              variant="outlined"
+              shape="rounded"
+              color="primary"
+              onChange={handleChangePage}
+            />
+          </div>
+        ) : (
+          <div className={styles.noData}>
+            <ImageWrapper url={NoData} />
+            <p>No data found</p>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
