@@ -30,6 +30,7 @@ const Sortings: FC<Props> = (props: Props) => {
   const optionLocationHandler = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     if (inputRef.current) inputRef.current.value = value;
+    setSearchLocation(value);
     setLocation(value);
   };
 
@@ -49,7 +50,7 @@ const Sortings: FC<Props> = (props: Props) => {
             <input
               type="text"
               placeholder="City, state, zip code or country"
-              onChange={searchLocationHandler}
+              onInput={searchLocationHandler}
               ref={inputRef}
             />
             <PublicOutlinedIcon />

@@ -12,7 +12,7 @@ import { getDateHasPassed } from "../../common/utils/helpers/getDateHasPassed";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [company, setCompany] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [jobList, setJobList] = useState<Array<Job>>([]);
   const [page, setPage] = useState<number>(1);
@@ -28,6 +28,7 @@ const Home = () => {
         page,
       };
       location.length > 0 && Object.assign(params, { location });
+      company.length > 0 && Object.assign(params, { company });
 
       const jobResponse = await doGetJobList(params);
       const jobResponseData = jobResponse.data.results;
@@ -71,11 +72,11 @@ const Home = () => {
     };
 
     fetchData();
-  }, [page, setIsLoading, location]);
+  }, [page, setIsLoading, location, company]);
 
   return (
     <MainLayout isOpen={isLoading}>
-      <Hero setIsLoading={setIsLoading} setLocation={setLocation} />
+      <Hero setCompany={setCompany} />
       <div className={styles.content}>
         <Sortings setLocation={setLocation} location={location} />
         <div className={styles["job-list"]}>

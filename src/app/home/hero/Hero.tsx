@@ -1,27 +1,33 @@
-import React, { FC, FormEvent } from "react";
+import React, { FC, FormEvent, useRef } from "react";
 
 import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import styles from "./Hero.module.scss";
 
 interface Props {
-  setIsLoading: (isLoading: boolean) => void;
-  setLocation: (location: string) => void;
+  setCompany: (company: string) => void;
 }
 
 const Hero: FC<Props> = (props: Props) => {
-  const { setIsLoading, setLocation } = props;
-  const searchJobHandler = (e: FormEvent<HTMLInputElement>) => {
-    setLocation(e.currentTarget.value);
+  const { setCompany } = props;
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const submitFormHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    inputRef.current && setCompany(inputRef.current.value);
+  };
+  const searchCompanyHandler = () => {
+    inputRef.current && inputRef.current.value === "" && setCompany("");
   };
 
   return (
     <div className={styles.hero}>
-      <form action="#">
+      <form action="#" onSubmit={submitFormHandler}>
         <input
           type="text"
           placeholder="Title, companies, expertise or benefits"
+          ref={inputRef}
+          onChange={searchCompanyHandler}
           required
-          onChange={searchJobHandler}
         />
         <button>Search</button>
         <WorkOutlineOutlinedIcon />
