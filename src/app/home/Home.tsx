@@ -1,19 +1,25 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useReducer, useState } from "react";
 
 import MainLayout from "../../common/ui/layout/main-layout";
 import Hero from "./hero";
-
 import styles from "./Home.module.scss";
 import { Job } from "../model";
 import Sortings from "./sortings";
 import Results from "./results";
 import { doGetCompany, doGetJobList } from "../api";
 import { Pagination } from "@mui/material";
+import { filteredReducer } from "./reducer";
+import { INIT_FILTERED_VALUES } from "../../common/utils/constants";
+import { getDateHasPassed } from "../../common/utils/helpers/getDateHasPassed";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [jobList, setJobList] = useState<Array<Job>>([]);
   const [page, setPage] = useState<number>(1);
+  const [filteredValues, setFilteredValues] = useReducer(
+    filteredReducer,
+    INIT_FILTERED_VALUES
+  );
 
   const handleChangePage = (event: ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -22,17 +28,20 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const jobResponse = await doGetJobList({ page });
+      const { category, level } = filteredValues;
+      const params = {
+        page,
+      };
+      category.length > 0 && Object.assign(params, { category });
+      level.length > 0 && Object.assign(params, { level });
+
+      const jobResponse = await doGetJobList(params);
       const jobResponseData = jobResponse.data.results;
 
       const jobData: Array<Job> = jobResponseData
         .slice(0, 5)
         .map((data: any) => {
-          const public_date = new Date(data.publication_date);
-          const now = new Date();
-          const date_has_passed = Math.floor(
-            (now.getTime() - public_date.getTime()) / 1000 / 3600 / 24
-          );
+          const time = getDateHasPassed(data.publication_date);
           const locations = data.locations.map(
             (location: any) => location.name
           );
@@ -41,8 +50,8 @@ const Home = () => {
             name: data.company.name,
             role: data.name,
             locations,
-            time: date_has_passed,
-            description: data.contents,
+            time,
+            id: data.id,
           };
         });
 
@@ -59,13 +68,13 @@ const Home = () => {
     };
 
     fetchData();
-  }, [page, setIsLoading]);
+  }, [page, setIsLoading, filteredValues]);
 
   return (
     <MainLayout isOpen={isLoading}>
       <Hero setIsLoading={setIsLoading} />
       <div className={styles.content}>
-        <Sortings />
+        <Sortings setFilteredValues={setFilteredValues} />
         <div className={styles["job-list"]}>
           <Results jobList={jobList} />
           <Pagination

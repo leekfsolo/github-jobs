@@ -5,6 +5,10 @@ export const doGetJobList = (params?: Object) => {
   return doGet(`${JOBS_BASE_URL}/jobs`, params);
 };
 
+export const doGetJob = (id: number) => {
+  return doGet(`${JOBS_BASE_URL}/jobs/${id}`);
+};
+
 export const doGetCompany = (id: number) => {
   return doGet(`${JOBS_BASE_URL}/companies/${id}`);
 };

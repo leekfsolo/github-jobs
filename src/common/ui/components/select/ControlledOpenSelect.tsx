@@ -3,20 +3,28 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { filteredAction } from "../../../../app/home/reducer";
+import { filteredActionType } from "../../../../app/enum";
 
 interface Props {
   items: Array<string>;
-  label: string;
+  label: filteredActionType;
+  setFilteredValues: React.Dispatch<filteredAction>;
 }
 
 const ControlledOpenSelect: React.FC<Props> = (props: Props) => {
-  const { items, label } = props;
+  const { items, label, setFilteredValues } = props;
 
   const [itemLabel, setItemLabel] = React.useState<string>("");
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: SelectChangeEvent<typeof itemLabel>) => {
-    setItemLabel(event.target.value);
+  const handleChange = (
+    event: SelectChangeEvent<typeof itemLabel>,
+    type: filteredActionType
+  ) => {
+    const payload = event.target.value;
+    setItemLabel(payload);
+    setFilteredValues({ type, payload });
   };
 
   const handleClose = () => {
@@ -39,7 +47,7 @@ const ControlledOpenSelect: React.FC<Props> = (props: Props) => {
           onOpen={handleOpen}
           value={itemLabel}
           label={label}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e, label)}
         >
           {items.map((item, idx) =>
             idx === 0 ? (

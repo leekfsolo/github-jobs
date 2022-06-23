@@ -1,10 +1,14 @@
-import { ReactNode } from "react";
-
 export interface Job {
   name: string;
   role: string;
   image: string;
   locations: Array<string>;
-  description: ReactNode;
-  time?: string;
+  description: string;
+  time?: number;
+  id?: number;
+}
+
+export interface filteredValues {
+  category: string;
+  level: string;
 }

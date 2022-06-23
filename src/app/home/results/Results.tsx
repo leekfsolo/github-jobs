@@ -16,7 +16,7 @@ const Results: FC<Props> = (props: Props) => {
     <ul className={styles.results}>
       {jobList.map((job, idx) => (
         <li key={idx}>
-          <Link to={job.name}>
+          <Link to={`${job.id}`}>
             <JobCard job={job} />
           </Link>
         </li>
