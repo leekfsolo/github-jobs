@@ -24,3 +24,9 @@
     color: colors.$dark-primary;
   }
 }
+
+@media (max-width: 576px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}

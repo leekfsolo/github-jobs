@@ -52,3 +52,39 @@
     }
   }
 }
+
+@media (max-width: 992px) {
+  .hero {
+    form {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    form {
+      width: 85%;
+
+      button {
+        padding: 12px 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    form {
+      width: 95%;
+
+      input {
+        padding-right: 50px;
+      }
+
+      button {
+        padding: 12px 15px;
+      }
+    }
+  }
+}

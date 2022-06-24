@@ -65,3 +65,19 @@
     }
   }
 }
+
+@media (max-width: 992px) {
+  .card {
+    .info {
+      .role {
+        font-size: 16px;
+      }
+
+      .extend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  }
+}

@@ -44,3 +44,26 @@
     }
   }
 }
+
+@media (max-width: 992px) {
+  .sortings {
+    .location {
+      .field {
+        input {
+          padding-left: 30px;
+          padding-right: 20px;
+        }
+
+        svg {
+          left: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .sortings {
+    margin-bottom: 30px;
+  }
+}
